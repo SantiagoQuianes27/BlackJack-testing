@@ -1,4 +1,4 @@
-import time, os, random
+import time, os, random, math
 
 # The code below sets the starting values before the game 
 chips = 2000
@@ -52,8 +52,26 @@ while blackJack is True:
   hand = 0
   dealerHand = 0
   bet = 0
+  #This clears the Terminal before starting the next game
   os.system("clear")
-  bet = int(input("Place your bet: "))
+
+#This is the betting process below which does not allow for the value of bet to be greater than the amount of chips you have
+  bet = float(input("Place your bet: "))
+  bet = int(bet)
+  time.sleep(0.5)
+  os.system("clear")
+  
+#The code ensures you dont continue the game without inputing the correct value, restarting you from the top but not affecting your total chips
+  if bet <= 0:
+    print("\033[31mSTOP TRYING TO ROB US!\033[0m")
+    time.sleep(0.5)
+    os.system("clear")
+    continue
+  elif bet > chips:
+    print("Thats more than you have bud remember you have:", chips)
+    time.sleep(3)
+    continue
+
   time.sleep(2.5)
   win()
   time.sleep(4)
